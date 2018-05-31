@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.14/dist/vue.js"></script>
+</head>
+<style>
+    	ul {
+            list-style: none;
+        }
+        .btn {
+            border: 1px solid red;
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+        }
+        .checked {
+            background: red;
+        }
+</style>
+<body>
+	<div id="container">
+		<ul>
+			<li v-for="item in list" v-on:click="clickItem(item)">{{ item.name}}<span class="btn" :class="item.selected ? 'checked': '' "></span></li>
+		</ul>
+	</div>
+</body>
+<script type="text/javascript">
+	var vm = new Vue({
+		el :"#container",
+		data : {
+			list :[
+			// {
+   //              'name':'王老师',
+   //              'school':'北华大学',
+   //          },
+   //          {
+   //              'name':'李老师',
+   //               'school':'北华大学',
+   //          },
+   //          {
+   //              'name':'秦老师',
+   //              'school':'北华大学',
+   //          },
+			],
+		},
+		mounted : function(){
+			this.getData();
+		},
+		methods : {
+			getData: function(){
+				var list =[
+						{
+			                'name':'王老师',
+			                'school':'北华大学',
+			            },
+			            {
+			                'name':'李老师',
+			                 'school':'北华大学',
+			            },
+			            {
+			                'name':'秦老师',
+			                'school':'北华大学',
+			            },
+						];
+						this.initList(list);
+			            this.list = list;
+				},
+				initList: function(resetList){
+					resetList.forEach(function(i){
+						i.selected = false;
+					});
+				},
+				clickItem :function(itemData){
+					itemData.selected = !itemData.selected;			
+				}
+		}
+	})
+</script>
+</html>
